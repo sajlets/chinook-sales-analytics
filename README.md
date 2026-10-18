@@ -23,7 +23,7 @@ Exactly 83 invoices in each of 2021–2024 suggests generated data, not a real b
 ### 2. Rock dominates, and the top four genres bring almost three quarters
 Rock alone brings 35.5% of revenue (826.65 of 2,328.60). Rock, Latin, Metal and Alternative & Punk together bring 73.5%. TV Shows is 5th by revenue (93.53) with only 47 units sold, because an episode costs about 1.99 against 0.99 for a typical track, so revenue rank and units rank differ.
 
-(Chart at the top of this page.)
+![Revenue by genre](docs/img/revenue_by_genre.png)
 
 Rock's share of revenue (35.5%) is close to its share of the catalog (37.0%), so rock leads mostly because there are more rock tracks, not necessarily because rock sells better. The data has no information about advertising or demand, so it cannot say whether promoting other genres would help.
 
@@ -32,7 +32,7 @@ The top 10 of 165 artists with sales bring 31% of revenue. Iron Maiden is first 
 
 ![Top 10 artists](docs/img/top10_artists.png)
 
-Iron Maiden, U2 and Metallica lead, but even the top 10 artists bring only 31% of revenue, so the business does not depend on a few artists.
+Iron Maiden, U2 and Metallica lead, but even the top 10 artists bring only 31% of revenue, so revenue is not concentrated in a few artists.
 
 ## Data quality
 Thirteen checks run on every build (`sql/02_quality.sql`) and all pass:
@@ -44,6 +44,8 @@ Thirteen checks run on every build (`sql/02_quality.sql`) and all pass:
 While building the checks I first compared invoice totals with the sum of their lines using floating-point numbers (`DOUBLE`) and got 56 "mismatches". They were rounding noise: after casting prices to `DECIMAL(10,2)` the number of mismatches is 0. The staging views therefore use `DECIMAL` for all money columns. Column types, row counts and cleaning rules are in [docs/data_dictionary.md](docs/data_dictionary.md).
 
 Two simple tests (`tests/test_sql.py`) re-check that all quality checks pass and that revenue in every KPI adds up to the invoice total (2,328.60).
+
+One thing the checks cannot catch: the genre list has overlapping labels (for example Rock and Rock And Roll, Metal and Heavy Metal), so revenue shares by genre may be split across near-duplicate genres.
 
 ## Limitations
 - Chinook is a sample database, so the results describe this dataset, not a real business.
