@@ -3,8 +3,6 @@
 Raw layer: every source table is copied 1:1 into a table named raw_<table>.
 No cleaning here; casting and cleaning happen in sql/01_staging.sql.
 
-Why copy into DuckDB at all: one analytical database file, and the SQL in
-sql/ runs in DuckDB the same way for everyone who clones the repo.
 """
 import sqlite3
 import sys

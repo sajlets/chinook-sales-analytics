@@ -13,7 +13,7 @@ JOIN (
 ) AS l USING (invoice_id)
 
 UNION ALL
--- 2. Every invoice has at least one line (check 1 would silently skip those)
+-- 2. Every invoice has at least one line 
 SELECT
     'invoice_has_lines',
     count(*) FILTER (WHERE l.invoice_id IS NULL),

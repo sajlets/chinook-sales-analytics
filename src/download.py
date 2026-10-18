@@ -1,11 +1,8 @@
 """Download the Chinook sample database (SQLite) into data/raw/.
 
-Source: https://github.com/lerocha/chinook-database (permissive license, see
-the LICENSE.md in that repository). The file is not committed to this repo
+Source: https://github.com/lerocha/chinook-database.
+The file is not committed to this repo
 (see .gitignore); run this script to get it.
-
-Chinook models a digital music store: artists, albums, tracks, customers,
-employees, invoices and invoice lines (11 tables).
 
 The script is safe to re-run: an existing file is not downloaded again.
 After downloading it prints every table with its row count, which is a quick
